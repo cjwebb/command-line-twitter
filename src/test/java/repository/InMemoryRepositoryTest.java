@@ -30,9 +30,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserPostsReturnsPostsInReverseOrder() {
-        repo.post(alice, text("hello"));
+        repo.post(alice, text(alice, "hello"));
         sleep(100);
-        repo.post(alice, text("hello again"));
+        repo.post(alice, text(alice, "hello again"));
 
         Posts alicePosts = repo.getUserPosts(alice);
         Iterator<Post> it = alicePosts.iterator();
@@ -44,9 +44,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserPostsAreSeperatedByUsername() {
-        Post alicePost = text("I love the weather today");
+        Post alicePost = text(alice, "I love the weather today");
         sleep(100);
-        Post bobPost = text("Damn! We lost!");
+        Post bobPost = text(bob, "Damn! We lost!");
 
         repo.post(alice, alicePost);
         repo.post(bob, bobPost);
@@ -63,9 +63,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsOwnPosts() {
-        Post charliePost = text("I'm in New York today! Anyone wants to have a coffee?");
+        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?");
         sleep(100);
-        Post charliePost2 = text("Anyone?");
+        Post charliePost2 = text(charlie, "Anyone?");
         repo.post(charlie, charliePost);
         repo.post(charlie, charliePost2);
 
@@ -79,9 +79,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsOldPostsFromUsersBeingFollowed() {
-        Post alicePost = text("I love the weather today");
+        Post alicePost = text(alice, "I love the weather today");
         sleep(100);
-        Post charliePost = text("I'm in New York today! Anyone wants to have a coffee?");
+        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?");
 
         repo.post(alice, alicePost);
         repo.post(charlie, charliePost);
@@ -98,7 +98,7 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsNewPostsForOtherUsers() {
-        Post alicePost = text("I love the weather today");
+        Post alicePost = text(alice, "I love the weather today");
 
         repo.follow(charlie, alice);
         repo.post(alice, alicePost);

@@ -9,7 +9,7 @@ import model.User;
  */
 public interface Repository {
 
-    public void post(User user, Post post);
+    public void post(User user, Post post); // remove user, and take from Post?
 
     public Posts getUserPosts(User user);
 

@@ -1,7 +1,13 @@
+import model.Action;
 import repository.InMemoryRepository;
+import strategy.*;
 import tokenizer.TwitterTokenizer;
 
 import java.io.Console;
+import java.util.HashMap;
+import java.util.Map;
+
+import static model.Action.*;
 
 /**
  *
@@ -15,9 +21,17 @@ public class Main {
             System.exit(1);
         }
 
+        Map<Action, Strategy> strategyMap = new HashMap<>();
+        strategyMap.put(POST, new PostStrategy());
+        strategyMap.put(GET_POSTS, new GetPostsStrategy());
+        strategyMap.put(GET_WALL, new GetWallStrategy());
+        strategyMap.put(FOLLOW, new FollowStrategy());
+
         Twitter twitter = new Twitter(
                 new TwitterTokenizer(),
-                new Logic(new InMemoryRepository()),
+                new StrategyExecutor(
+                        new InMemoryRepository(),
+                        strategyMap),
                 new Formatter()
         );
 

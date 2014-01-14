@@ -17,6 +17,10 @@ public class Posts implements Iterable<Post> {
         return posts.size();
     }
 
+    public boolean isEmpty(){
+        return size() == 0;
+    }
+
     @Override
     public Iterator<Post> iterator() {
         return posts.iterator();

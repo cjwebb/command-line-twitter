@@ -31,8 +31,12 @@ public class User implements Comparable<User> {
         return name != null ? name.hashCode() : 0;
     }
 
-    @Override
+    @Override // todo: remove
     public int compareTo(User o) {
         return o.name.compareTo(this.name);
+    }
+
+    public String getName() {
+        return name;
     }
 }
