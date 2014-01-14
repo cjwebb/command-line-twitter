@@ -1,3 +1,6 @@
+import repository.InMemoryRepository;
+import tokenizer.TwitterTokenizer;
+
 import java.io.Console;
 
 /**
@@ -13,8 +16,8 @@ public class Main {
         }
 
         Twitter twitter = new Twitter(
-                new Tokenizer(),
-                new Logic(),
+                new TwitterTokenizer(),
+                new Logic(new InMemoryRepository()),
                 new Formatter()
         );
 

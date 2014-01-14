@@ -64,6 +64,7 @@ public class InMemoryRepositoryTest {
     @Test
     public void getUserWallReturnsOwnPosts() {
         Post charliePost = text("I'm in New York today! Anyone wants to have a coffee?");
+        sleep(100);
         Post charliePost2 = text("Anyone?");
         repo.post(charlie, charliePost);
         repo.post(charlie, charliePost2);
@@ -71,7 +72,7 @@ public class InMemoryRepositoryTest {
         Posts charliePosts = repo.getUserWall(charlie);
         Iterator<Post> it = charliePosts.iterator();
 
-        //assertEquals(2, charliePosts.size());
+        assertEquals(2, charliePosts.size());
         assertEquals(charliePost2, it.next());
         assertEquals(charliePost, it.next());
     }
@@ -108,6 +109,7 @@ public class InMemoryRepositoryTest {
         assertEquals(alicePost, charliePosts.iterator().next());
     }
 
+    // todo, remove by making posts not ordered by java.util.Date (inject system clock interface)
     private void sleep(long i) {
         try {
             Thread.sleep(i);

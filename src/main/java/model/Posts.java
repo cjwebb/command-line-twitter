@@ -31,4 +31,8 @@ public class Posts implements Iterable<Post> {
         }
         return new Posts(list);
     }
+
+    public static final Posts empty() {
+        return new Posts(new LinkedList<Post>());
+    }
 }

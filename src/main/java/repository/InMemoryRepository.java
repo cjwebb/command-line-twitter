@@ -36,12 +36,13 @@ public class InMemoryRepository implements Repository {
         }
     }
 
-    // todo: generics?
     private Set<User> emptyIfNull(Set<User> s) {
+        // todo user comparator
         return s == null ? new TreeSet<User>() : s;
     }
 
     private Set<Post> emptySetIfNull(Set<Post> s) {
+        // todo post comparator
         return s == null ? new TreeSet<Post>() : s;
     }
 

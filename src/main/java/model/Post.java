@@ -6,7 +6,7 @@ import java.util.Date;
  *
  */
 public class Post implements Comparable<Post> {
-
+    
     private final String text;
     private Date date;
 
