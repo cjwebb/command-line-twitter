@@ -17,13 +17,15 @@ public class Posts implements Iterable<Post> {
         return posts.size();
     }
 
-    public boolean isEmpty(){
-        return size() == 0;
-    }
-
     @Override
     public Iterator<Post> iterator() {
         return posts.iterator();
+    }
+
+    public static final Posts posts(Post post) {
+        List<Post> list = new LinkedList<>();
+        list.add(post);
+        return new Posts(list);
     }
 
     public static final Posts posts(Set<Post> posts) {

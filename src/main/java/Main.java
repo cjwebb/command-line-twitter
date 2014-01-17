@@ -1,7 +1,7 @@
 import model.Action;
 import repository.InMemoryRepository;
 import strategy.*;
-import tokenizer.TwitterTokenizer;
+import tokenizer.SubstringTokenizer;
 
 import java.io.Console;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class Main {
         strategyMap.put(FOLLOW, new FollowStrategy());
 
         Twitter twitter = new Twitter(
-                new TwitterTokenizer(),
+                new SubstringTokenizer(),
                 new StrategyExecutor(
                         new InMemoryRepository(),
                         strategyMap),
@@ -39,7 +39,7 @@ public class Main {
         while (true) {
             String command = c.readLine("> ");
             String out = twitter.something(command);
-            c.writer().println(out);
+            c.writer().print(out);
         }
     }
 }

@@ -3,7 +3,7 @@ package model;
 /**
  *
  */
-public class User implements Comparable<User> {
+public class User {
     private final String name;
 
     private User(String name) {
@@ -29,11 +29,6 @@ public class User implements Comparable<User> {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
-    }
-
-    @Override // todo: remove
-    public int compareTo(User o) {
-        return o.name.compareTo(this.name);
     }
 
     public String getName() {

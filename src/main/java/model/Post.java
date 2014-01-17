@@ -25,9 +25,17 @@ public class Post implements Comparable<Post> {
         return text;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public String toString() {
-        return user.getName() + " > " + text + " | " + date.toString();
+        return user.getName() + " - " + text + " (" + date.toString() + ")";
     }
 
     @Override

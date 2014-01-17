@@ -24,31 +24,30 @@ public class InMemoryRepository implements Repository {
     }
 
     private void add(User user, Post post, Map<User, Set<Post>> map) {
-        Set<Post> posts = emptySetIfNull(map.get(user));
+        Set<Post> posts = emptyPostSetIfNull(map.get(user));
         posts.add(post);
         map.put(user, posts);
     }
 
     private void addToFollowersWalls(User user, Post post) {
-        Set<User> followers = emptyIfNull(userFollowers.get(user));
+        Set<User> followers = emptyUserSetIfNull(userFollowers.get(user));
         for (User u: followers) {
             add(u, post, userWall);
         }
     }
 
-    private Set<User> emptyIfNull(Set<User> s) {
-        // todo user comparator
-        return s == null ? new TreeSet<User>() : s;
+    private Set<User> emptyUserSetIfNull(Set<User> s) {
+        return s == null ? new HashSet<User>() : s;
     }
 
-    private Set<Post> emptySetIfNull(Set<Post> s) {
+    private Set<Post> emptyPostSetIfNull(Set<Post> s) {
         // todo post comparator
         return s == null ? new TreeSet<Post>() : s;
     }
 
     @Override
     public Posts getUserPosts(User user) {
-        Set<Post> posts = emptySetIfNull(userPosts.get(user));
+        Set<Post> posts = emptyPostSetIfNull(userPosts.get(user));
         return Posts.posts(posts);
     }
 
@@ -61,7 +60,7 @@ public class InMemoryRepository implements Repository {
     @Override
     public void follow(User user, User userToFollow) {
         // add to set
-        Set<User> followers = emptyIfNull(userFollowers.get(userToFollow));
+        Set<User> followers = emptyUserSetIfNull(userFollowers.get(userToFollow));
         followers.add(user);
         userFollowers.put(userToFollow, followers);
 
