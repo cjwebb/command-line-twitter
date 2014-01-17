@@ -3,6 +3,7 @@ package repository;
 import model.Post;
 import model.Posts;
 import model.User;
+import model.comparator.PostDateComparator;
 
 import java.util.*;
 
@@ -41,8 +42,8 @@ public class InMemoryRepository implements Repository {
     }
 
     private Set<Post> emptyPostSetIfNull(Set<Post> s) {
-        // todo post comparator
-        return s == null ? new TreeSet<Post>() : s;
+        Comparator<Post> comparator = new PostDateComparator();
+        return s == null ? new TreeSet<>(comparator) : s;
     }
 
     @Override

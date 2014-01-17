@@ -2,10 +2,7 @@ package model;
 
 import java.util.Date;
 
-/**
- *
- */
-public class Post implements Comparable<Post> {
+public class Post {
 
     private User user;
     private final String text;
@@ -38,8 +35,4 @@ public class Post implements Comparable<Post> {
         return user.getName() + " - " + text + " (" + date.toString() + ")";
     }
 
-    @Override
-    public int compareTo(Post other) {
-        return other.date.compareTo(this.date);
-    }
 }
