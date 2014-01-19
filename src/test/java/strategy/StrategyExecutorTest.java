@@ -17,7 +17,6 @@ import static model.Posts.posts;
 import static model.User.name;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(JUnit4.class)
 public class StrategyExecutorTest {
     SystemClock clock = new CurrentDateSystemClock();
 

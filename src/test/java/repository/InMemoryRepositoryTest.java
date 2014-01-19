@@ -14,7 +14,6 @@ import static model.Post.text;
 import static model.User.name;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(JUnit4.class)
 public class InMemoryRepositoryTest {
 
     private FakeSystemClock clock = new FakeSystemClock(); // if only there were implicits

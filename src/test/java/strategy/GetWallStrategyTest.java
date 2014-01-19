@@ -17,9 +17,6 @@ import static model.Posts.posts;
 import static model.User.name;
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- */
 public class GetWallStrategyTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();

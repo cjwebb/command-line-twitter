@@ -8,7 +8,6 @@ import org.junit.runners.JUnit4;
 import static model.Action.*;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(JUnit4.class)
 public class SubstringTokenizerTest {
 
     SubstringTokenizer tokenizer = new SubstringTokenizer();

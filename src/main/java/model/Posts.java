@@ -5,9 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-/**
- *
- */
 public class Posts implements Iterable<Post> {
 
     private final List<Post> posts;

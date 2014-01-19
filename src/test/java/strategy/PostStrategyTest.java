@@ -14,9 +14,6 @@ import repository.Repository;
 
 import static model.User.name;
 
-/**
- *
- */
 public class PostStrategyTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();

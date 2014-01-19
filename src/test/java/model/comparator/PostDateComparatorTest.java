@@ -9,7 +9,6 @@ import org.junit.runners.JUnit4;
 import static model.User.name;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(JUnit4.class)
 public class PostDateComparatorTest {
 
     FakeSystemClock clock = new FakeSystemClock();
