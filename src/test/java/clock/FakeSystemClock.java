@@ -14,6 +14,10 @@ public class FakeSystemClock implements SystemClock {
         date = new Date(newTime);
     }
 
+    public void setTime(long t) {
+        date = new Date(t);
+    }
+
     @Override
     public Date getTime() {
         return date;

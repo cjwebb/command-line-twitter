@@ -1,7 +1,6 @@
 package model.comparator;
 
 import clock.FakeSystemClock;
-import clock.SystemClock;
 import model.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;

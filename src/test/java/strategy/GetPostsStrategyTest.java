@@ -2,10 +2,12 @@ package strategy;
 
 import clock.CurrentDateSystemClock;
 import clock.SystemClock;
-import model.*;
+import model.Action;
+import model.Input;
+import model.Output;
+import model.Posts;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import repository.Repository;

@@ -1,6 +1,5 @@
 package strategy;
 
-import clock.CurrentDateSystemClock;
 import clock.FakeSystemClock;
 import clock.SystemClock;
 import model.Action;

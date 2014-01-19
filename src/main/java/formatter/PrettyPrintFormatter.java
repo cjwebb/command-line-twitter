@@ -1,15 +1,19 @@
 package formatter;
 
+import clock.SystemClock;
 import model.Output;
 import model.Post;
-import org.ocpsoft.prettytime.Duration;
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.JustNow;
 
-import java.util.Date;
-import java.util.Locale;
-
 public class PrettyPrintFormatter implements Formatter {
+
+    private final SystemClock clock;
+
+    public PrettyPrintFormatter(SystemClock clock) {
+        this.clock = clock;
+    }
+
     public String format(Output output) {
         StringBuilder builder = new StringBuilder();
         for (Post p: output.getPosts()) {
@@ -19,7 +23,7 @@ public class PrettyPrintFormatter implements Formatter {
     }
 
     private String prettyPrintPost(Post p) {
-        PrettyTime pt = new PrettyTime();
+        PrettyTime pt = new PrettyTime(clock.getTime());
         pt.removeUnit(JustNow.class);
 
         String time = pt.format(p.getDate());

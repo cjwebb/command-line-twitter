@@ -17,9 +17,6 @@ import static model.Posts.posts;
 import static model.User.name;
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- */
 @RunWith(JUnit4.class)
 public class StrategyExecutorTest {
     SystemClock clock = new CurrentDateSystemClock();
@@ -33,7 +30,7 @@ public class StrategyExecutorTest {
         map.put(FOLLOW, new FakeStrategy(posts));
 
         StrategyExecutor executor = new StrategyExecutor(r, map);
-        Output output = executor.executeStrategy(new Input("anyUserName", FOLLOW, "anything"));
+        Output output = executor.execute(new Input("anyUserName", FOLLOW, "anything"));
 
         assertEquals(posts, output.getPosts());
 

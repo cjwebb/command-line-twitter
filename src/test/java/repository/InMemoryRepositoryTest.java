@@ -5,14 +5,14 @@ import model.Post;
 import model.Posts;
 import model.User;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.Iterator;
 
-import static model.User.name;
 import static model.Post.text;
+import static model.User.name;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
 public class InMemoryRepositoryTest {

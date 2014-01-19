@@ -1,3 +1,5 @@
+package twitter;
+
 import formatter.Formatter;
 import model.Input;
 import model.Output;
@@ -16,9 +18,9 @@ public class Twitter {
         this.formatter = formatter;
     }
 
-    public String something(String command) {
+    public String run(String command) {
         Input c = tokenizer.split(command);
-        Output o = strategyExecutor.executeStrategy(c);
+        Output o = strategyExecutor.execute(c);
         return formatter.format(o);
     }
 }

@@ -16,7 +16,7 @@ public final class StrategyExecutor {
         this.strategyMap = strategyMap;
     }
 
-    public Output executeStrategy(Input input) {
+    public Output execute(Input input) {
         Strategy strategy = strategyMap.get(input.getAction());
         if (strategy != null){
             return strategy.execute(repository, input);

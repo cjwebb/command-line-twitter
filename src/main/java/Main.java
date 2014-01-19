@@ -1,20 +1,11 @@
 import clock.CurrentDateSystemClock;
 import clock.SystemClock;
-import formatter.PrettyPrintFormatter;
-import model.Action;
-import repository.InMemoryRepository;
-import strategy.*;
-import tokenizer.SubstringTokenizer;
+import twitter.Twitter;
 
 import java.io.Console;
-import java.util.HashMap;
-import java.util.Map;
 
-import static model.Action.*;
+import static config.Config.twitter;
 
-/**
- *
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -25,25 +16,12 @@ public class Main {
         }
 
         SystemClock clock = new CurrentDateSystemClock();
-
-        Map<Action, Strategy> strategyMap = new HashMap<>();
-        strategyMap.put(POST, new PostStrategy(clock));
-        strategyMap.put(GET_POSTS, new GetPostsStrategy());
-        strategyMap.put(GET_WALL, new GetWallStrategy());
-        strategyMap.put(FOLLOW, new FollowStrategy());
-
-        Twitter twitter = new Twitter(
-                new SubstringTokenizer(),
-                new StrategyExecutor(
-                        new InMemoryRepository(),
-                        strategyMap),
-                new PrettyPrintFormatter()
-        );
+        Twitter twitter = twitter(clock);
 
         // User will need to Ctrl-C to quit.
         while (true) {
             String command = c.readLine("> ");
-            String out = twitter.something(command);
+            String out = twitter.run(command);
             c.writer().print(out);
         }
     }
