@@ -1,3 +1,6 @@
+import clock.CurrentDateSystemClock;
+import clock.SystemClock;
+import formatter.PrettyPrintFormatter;
 import model.Action;
 import repository.InMemoryRepository;
 import strategy.*;
@@ -21,8 +24,10 @@ public class Main {
             System.exit(1);
         }
 
+        SystemClock clock = new CurrentDateSystemClock();
+
         Map<Action, Strategy> strategyMap = new HashMap<>();
-        strategyMap.put(POST, new PostStrategy());
+        strategyMap.put(POST, new PostStrategy(clock));
         strategyMap.put(GET_POSTS, new GetPostsStrategy());
         strategyMap.put(GET_WALL, new GetWallStrategy());
         strategyMap.put(FOLLOW, new FollowStrategy());
@@ -32,7 +37,7 @@ public class Main {
                 new StrategyExecutor(
                         new InMemoryRepository(),
                         strategyMap),
-                new Formatter()
+                new PrettyPrintFormatter()
         );
 
         // User will need to Ctrl-C to quit.

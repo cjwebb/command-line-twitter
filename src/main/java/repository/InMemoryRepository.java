@@ -7,14 +7,11 @@ import model.comparator.PostDateComparator;
 
 import java.util.*;
 
-/**
- *
- */
 public class InMemoryRepository implements Repository {
 
-    private Map<User, Set<Post>> userPosts = new HashMap<>();
-    private Map<User, Set<Post>> userWall = new HashMap<>();
-    private Map<User, Set<User>> userFollowers = new HashMap<>();
+    private final Map<User, Set<Post>> userPosts = new HashMap<>();
+    private final Map<User, Set<Post>> userWall = new HashMap<>();
+    private final Map<User, Set<User>> userFollowers = new HashMap<>();
 
     @Override
     public void post(User user, Post post) {

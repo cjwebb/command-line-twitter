@@ -1,3 +1,5 @@
+package formatter;
+
 import model.Output;
 import model.Post;
 import org.ocpsoft.prettytime.Duration;
@@ -7,10 +9,7 @@ import org.ocpsoft.prettytime.units.JustNow;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- *
- */
-public class Formatter {
+public class PrettyPrintFormatter implements Formatter {
     public String format(Output output) {
         StringBuilder builder = new StringBuilder();
         for (Post p: output.getPosts()) {

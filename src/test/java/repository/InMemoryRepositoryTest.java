@@ -1,5 +1,6 @@
 package repository;
 
+import clock.FakeSystemClock;
 import model.Post;
 import model.Posts;
 import model.User;
@@ -13,15 +14,10 @@ import java.util.Iterator;
 import static model.User.name;
 import static model.Post.text;
 
-/**
- * todo:
- *      1. use a system clock, and increment that, instead of sleeping
- *      2. tidy up
- *
- */
 @RunWith(JUnit4.class)
 public class InMemoryRepositoryTest {
 
+    private FakeSystemClock clock = new FakeSystemClock(); // if only there were implicits
     private InMemoryRepository repo = new InMemoryRepository();
 
     private User alice = name("Alice");
@@ -30,9 +26,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserPostsReturnsPostsInReverseOrder() {
-        repo.post(alice, text(alice, "hello"));
-        sleep(100);
-        repo.post(alice, text(alice, "hello again"));
+        repo.post(alice, text(alice, "hello", clock));
+        incrementClock();
+        repo.post(alice, text(alice, "hello again", clock));
 
         Posts alicePosts = repo.getUserPosts(alice);
         Iterator<Post> it = alicePosts.iterator();
@@ -44,9 +40,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserPostsAreSeperatedByUsername() {
-        Post alicePost = text(alice, "I love the weather today");
-        sleep(100);
-        Post bobPost = text(bob, "Damn! We lost!");
+        Post alicePost = text(alice, "I love the weather today", clock);
+        incrementClock();
+        Post bobPost = text(bob, "Damn! We lost!", clock);
 
         repo.post(alice, alicePost);
         repo.post(bob, bobPost);
@@ -63,9 +59,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsOwnPosts() {
-        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?");
-        sleep(100);
-        Post charliePost2 = text(charlie, "Anyone?");
+        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?", clock);
+        incrementClock();
+        Post charliePost2 = text(charlie, "Anyone?", clock);
         repo.post(charlie, charliePost);
         repo.post(charlie, charliePost2);
 
@@ -79,9 +75,9 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsOldPostsFromUsersBeingFollowed() {
-        Post alicePost = text(alice, "I love the weather today");
-        sleep(100);
-        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?");
+        Post alicePost = text(alice, "I love the weather today", clock);
+        incrementClock();
+        Post charliePost = text(charlie, "I'm in New York today! Anyone wants to have a coffee?", clock);
 
         repo.post(alice, alicePost);
         repo.post(charlie, charliePost);
@@ -98,7 +94,7 @@ public class InMemoryRepositoryTest {
 
     @Test
     public void getUserWallReturnsNewPostsForOtherUsers() {
-        Post alicePost = text(alice, "I love the weather today");
+        Post alicePost = text(alice, "I love the weather today", clock);
 
         repo.follow(charlie, alice);
         repo.post(alice, alicePost);
@@ -109,12 +105,7 @@ public class InMemoryRepositoryTest {
         assertEquals(alicePost, charliePosts.iterator().next());
     }
 
-    // todo, remove by making posts not ordered by java.util.Date (inject system clock interface)
-    private void sleep(long i) {
-        try {
-            Thread.sleep(i);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void incrementClock() {
+        clock.increment(1000);
     }
 }

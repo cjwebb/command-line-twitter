@@ -3,7 +3,7 @@ package model;
 /**
  *
  */
-public class User {
+public final class User {
     private final String name;
 
     private User(String name) {

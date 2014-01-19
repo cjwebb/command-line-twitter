@@ -1,16 +1,14 @@
+import formatter.Formatter;
 import model.Input;
 import model.Output;
 import strategy.StrategyExecutor;
 import tokenizer.Tokenizer;
 
-/**
- *
- */
 public class Twitter {
 
-    private Tokenizer tokenizer;
-    private StrategyExecutor strategyExecutor;
-    private Formatter formatter;
+    private final Tokenizer tokenizer;
+    private final StrategyExecutor strategyExecutor;
+    private final Formatter formatter;
 
     public Twitter(Tokenizer tokenizer, StrategyExecutor strategyExecutor, Formatter formatter) {
         this.tokenizer = tokenizer;

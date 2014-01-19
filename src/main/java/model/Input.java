@@ -1,12 +1,9 @@
 package model;
 
-/**
- *
- */
-public class Input {
-    private String userName;
-    private Action action;
-    private String actionText;
+public final class Input {
+    private final String userName;
+    private final Action action;
+    private final String actionText;
 
     public Input(String userName, Action action, String actionText){
         this.userName = userName;

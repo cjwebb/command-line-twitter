@@ -1,11 +1,8 @@
 package model;
 
-/**
- *
- */
-public class Output {
+public final class Output {
 
-    private Posts posts;
+    private final Posts posts;
 
     public Output(Posts posts) {
         this.posts = posts;
